@@ -31,7 +31,7 @@ async function autoProcess() {
     }
 }
 
-input.addEventListener("focus", autoProcess);
+input.addEventListener("click", autoProcess);
 
 autoToggle.addEventListener("change",()=>{
     if(autoToggle.checked){
@@ -64,4 +64,5 @@ input.addEventListener("input", async () => {
 
 function toggleTheme(){ document.body.classList.toggle("dark"); }
 function toggleInfo(){ modal.style.display = modal.style.display==="flex"?"none":"flex"; }
+
 window.onclick=(e)=>{if(e.target===modal) toggleInfo();}
