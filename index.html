@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Text Cleaner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="info-btn" onclick="toggleInfo()" title="Informações de uso">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+        </svg>
+    </div>
+
+    <div class="theme-switch">
+        <span class="theme-icon">☀️</span>
+        <div class="switch" onclick="toggleTheme()"></div>
+        <span class="theme-icon">🌙</span>
+    </div>
+
+    <h1>PDF Text Cleaner ✨</h1>
+
+    <textarea id="inputText" placeholder="Cole aqui o texto bruto do PDF..."></textarea>
+
+    <div class="output">
+        <textarea id="outputText" readonly placeholder="Texto limpo aparecerá aqui..."></textarea>
+
+        <div class="button-group" id="buttonGroup">
+            <button class="button-copy" onclick="convertText()">Converter</button>
+            <button class="button-copy" onclick="copyToClipboard()">Copiar Texto Ajustado</button>
+        </div>
+
+        <p id="feedback" class="copy-feedback">✅ Copiado!</p>
+    </div>
+
+    <label class="auto-wrapper" title="Ativar automação: seleciona tudo, cola, converte e copia automaticamente">
+        <input type="checkbox" id="autoToggle">
+        <span class="auto-icon" id="autoIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+            </svg>
+        </span>
+    </label>
+
+</div>
+
+<div id="infoModal" class="modal"> 
+    <div class="modal-content">
+        <span class="close" onclick="toggleInfo()">&times;</span>
+        <h2>Como funciona?</h2>
+        <p>O PDF Text Cleaner é uma ferramenta criada para tratar textos copiados de PDFs que vêm com quebras de linha bagunçadas, fazendo palavras grudarem ou quebrando frases de forma incorreta.</p>
+        <p>Para melhores resultados, utilize a limpeza <strong>parágrafo por parágrafo</strong>. Se houver uma quebra de linha real no texto, ela também será removida.</p>
+
+        <h3>Como usar</h3>
+        <ol>
+            <li>Abra o PDF pelo <a href="https://get.adobe.com/br/reader/" target="_blank"><strong>Adobe Acrobat Reader</strong></a> (recomendado).</li>
+            <li>Copie o texto desejado.</li>
+            <li>Cole o texto no campo superior deste aplicativo.</li>
+            <li>Clique no botão <strong>“Converter”</strong> para ajustar o texto.</li>
+            <li>Em seguida, clique no botão <strong>“Copiar Texto Ajustado”</strong> para copiar o resultado final.</li>
+        </ol>
+
+        <h3>Automação</h3>
+        <p>
+            O botão de engrenagem no canto inferior direito permite ativar a automação. Quando habilitado, ele seleciona tudo, cola o texto, converte automaticamente e copia o resultado, sem precisar clicar nos botões manualmente.
+        </p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
